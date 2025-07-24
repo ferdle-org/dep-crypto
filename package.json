@@ -1,0 +1,117 @@
+{
+  "name": "LoggingFramework",
+  "author": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "aws-sdk-mock": "4.5.0",
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-security": "^1.4.0",
+    "husky": "^4.2.5",
+    "lint-staged": "11.0.0",
+    "mocha": "^9.1.3",
+    "nyc": "15.1.0",
+    "prettier": "1.12.1",
+    "proxyquire": "2.1.3",
+    "sinon": "6.1.5"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .js --fix && prettier --write",
+    "test": "nyc --check-coverage --lines 80 --per-file mocha --recursive ./test"
+  },
+  "nyc": {
+    "include": [
+      "service/**/*.js"
+    ],
+    "exclude": [
+      "common/*"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "mocha": true,
+      "es6": true
+    },
+    "plugins": [
+      "chai-friendly",
+      "security"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "prettier",
+      "plugin:security/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 9
+    },
+    "rules": {
+      "no-unused-expressions": 0,
+      "no-mixed-spaces-and-tabs": 0,
+      "chai-friendly/no-unused-expressions": 2,
+      "no-unused-vars": 0,
+      "no-console": "off",
+      "indent": [
+        "error",
+        "tab"
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "prettier": {
+    "useTabs": true
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "6.12.5",
+    "aws-xray-sdk-core": "3.2.0",
+    "crypto-js": "4.0.0",
+    "data-mask": "0.0.4",
+    "fetch": "1.1.0",
+    "fs": "0.0.1-security",
+    "handlebars": "4.7.7",
+    "json-schema-ref-parser": "9.0.6",
+    "lodash": "4.17.21",
+    "mask-xml": "1.0.4",
+    "moment": "2.29.1",
+    "moment-timezone": "0.5.31",
+    "node-cache": "5.1.2",
+    "node-fetch": "^3.2.0",
+    "path": "0.12.7",
+    "request": "2.88.2",
+    "semver": "7.3.2",
+    "soap": "0.36.0",
+    "test": "0.6.0",
+    "underscore": "1.13.0-2",
+    "xml2js": "0.4.23"
+  }
+}
